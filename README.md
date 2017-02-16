@@ -1,0 +1,2 @@
+# Strong-Quads
+solves quadtrics 
