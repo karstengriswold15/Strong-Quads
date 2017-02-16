@@ -70,8 +70,9 @@ function QF() {
   b = $("#linB").val();
   c = $("#constant").val();
   console.log(a,b,c);
-  solutions();
-  graphQuad();
+  $("#answers").hide();
+  $("#answers").fadeIn(1000);
+  resetCanvas();
 }  // close QF
 
 function results() {
@@ -92,8 +93,7 @@ function results() {
 function solutions() {
 // qudratic formula
 context.fillStyle="blue";
-$("#answers").hide();
-$("#answers").fadeIn(1000);
+
 d = Math.pow(b*1,2)-4*a*c;
 x1=((-b*1)+(d**.5))/2*a
 x2=((-b*1)-(d**.5))/2*a
@@ -115,8 +115,6 @@ else{
   x1 = Math.round(x1,3);
   x2 = Math.round(x2,3);
   $("#solution1").text("x-intercept are =  ("+ x1 +",0) and ("+ x2 +",0)");
-
-
 
 
 }  //close of the if-else [\
@@ -157,7 +155,6 @@ function resetCanvas() {
   grid();
   graphQuad();
   results();
-  solutions();
 } //end resetCanvas
 
 function doMouseMove(event) {
