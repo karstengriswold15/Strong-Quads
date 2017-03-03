@@ -45,7 +45,6 @@ context.strokeStyle= "rgba(252,245,204,.4)";
       context.moveTo(w/2+i*k, 0);
       context.lineTo(w/2+i*k, h);
       context.stroke();
-
 }
 
 
@@ -82,12 +81,28 @@ function results() {
   vY = a*Math.pow(vX,2)+b*vX+c*1;
   vX = vX.toFixed(1);
   vY = vY.toFixed(1);
+
+  // vertex
   context.beginPath();
   context.arc(w/2+vX*k,h/2-vY*k,5,0,6.28)
   context.fill();
+
   $("#vertex").text("Vertex is at (" + vX+","+vY+")");
   $("#yInt").text("The y-intercept is at (0,"+c+")");
   $("#vertexForm").text("Vertex Form is y="+a+"(x-"+vX+")^2 + "+vY);
+
+  // y int circle
+  context.beginPath();
+  context.arc(w/2,h/2-c*k,5,0,6.28);
+  context.fill();
+
+  //sym line 
+  context.setLineDash([5, 10]);
+  context.beginPath();
+  context.moveTo(w/2+vX*k, 5);
+  context.lineTo(w/2+vX*k, h-5);
+  context.stroke();
+  context.setLineDash([0]);
 }  // close results()
 
 function solutions() {
@@ -95,8 +110,8 @@ function solutions() {
 context.fillStyle="blue";
 
 d = Math.pow(b*1,2)-4*a*c;
-x1=((-b*1)+(d**.5))/2*a
-x2=((-b*1)-(d**.5))/2*a
+x1=((-b*1)+(d**.5))/2*a;
+x2=((-b*1)-(d**.5))/2*a;
 context.beginPath();
 context.arc(w/2+x1*k,h/2,5,0,6.28);
 context.fill();
@@ -145,9 +160,10 @@ function zoomIn() {
 }  // end zoomIN
 
 function zoomOut() {
-
-    k = k - 2;
-    resetCanvas();
+    if (k>3) {
+      k = k - 2;
+      resetCanvas();
+    }
 }  // end zoomOut
 
 function resetCanvas() {
@@ -155,6 +171,7 @@ function resetCanvas() {
   grid();
   graphQuad();
   results();
+  solutions();
 } //end resetCanvas
 
 function doMouseMove(event) {
