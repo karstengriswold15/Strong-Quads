@@ -107,7 +107,7 @@ function results() {
 
 function solutions() {
 // qudratic formula
-context.fillStyle="blue";
+context.fillStyle="green";
 
 d = Math.pow(b*1,2)-4*a*c;
 x1=((-b*1)+(d**.5))/2*a;
